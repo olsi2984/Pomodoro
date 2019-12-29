@@ -1,41 +1,24 @@
 const timerDisplay = document.querySelector("#timer");
 const sessionDisplay = document.querySelector("#s_screen");
 const breakDisplay = document.querySelector("#b_screen");
-const messageDisplay = document.querySelector("#message");
 let seconds = 1500;
 let breakseconds = 300;
-let onbreak = "OFF";
-let onsession = "ON";
-let sessionseconds;
-let started = "OFF";
+let onSession = "ON";
+let onBreak;
 
 function timer(seconds) {
     const now = Date.now();
     const then = now + seconds * 1000;
+    onSession = "OFF"
     countdown = setInterval(function () {
         const secondsLeft = Math.round((then - Date.now()) / 1000);
-        if (secondsLeft <= 0) {
+        if (secondsLeft < 0) {
             clearInterval(countdown);
-            toggler();
+            return;
         }
         displayTimeLeft(secondsLeft);
     }, 1000)
-}
-
-function toggler() {
-    if (onbreak === "OFF" && onsession === "ON") {
-        messageDisplay.textContent = "BREAK";
-        onbreak = "ON";
-        onsession = "OFF"
-        seconds = breakseconds;
-        timer(seconds)
-    } else {
-        messageDisplay.textContent = "WORK";
-        onbreak = "OFF";
-        onsession = "ON"
-        seconds = sessionseconds;
-        timer(seconds);
-    }
+    
 }
 
 function displayTimeLeft(seconds) {
@@ -43,13 +26,13 @@ function displayTimeLeft(seconds) {
     const remainedseconds = seconds % 60;
     const display = `${minutes < 10 ? '0' : '' }${minutes}:${remainedseconds < 10 ? '0' : '' }${remainedseconds}`;
     timerDisplay.textContent = display;
+    console.log({minutes , remainedseconds})
 }
 
 var start_btn = document.querySelector('#start_btn');
 start_btn.addEventListener("click", function(){ 
-    messageDisplay.textContent = "WORK";
-    timer(seconds); 
-    started = "ON";   
+    timer(seconds);
+
     });
 
 var reset_btn = document.querySelector('#reset_btn');
@@ -71,37 +54,26 @@ stop_btn.addEventListener("click", function(){
 
 var s_up = document.querySelector('#s_up');
 s_up.addEventListener("click", function(){ 
-    if (started === "ON") {
-        return;
-    }
     if (seconds / 60 >= 60) {
         return;
     }
     seconds = seconds + 60; 
-    sessionseconds = seconds;
     sessionDisplay.textContent = seconds / 60;
     timerDisplay.textContent = seconds / 60 + ":00"
     });
 
 var s_down = document.querySelector('#s_down');
 s_down.addEventListener("click", function(){ 
-    if (started === "ON") {
-        return;
-    }
     if (seconds / 60 <= 1) {
         return;
     }
     seconds = seconds - 60; 
-    sessionseconds = seconds;
     sessionDisplay.textContent = seconds / 60;
     timerDisplay.textContent = seconds / 60 + ":00"
     });
 
 var b_up = document.querySelector('#b_up');
 b_up.addEventListener("click", function(){ 
-    if (started === "ON") {
-        return;
-    }
     if (breakseconds / 60 >= 10) {
         return;
     }
@@ -112,9 +84,6 @@ b_up.addEventListener("click", function(){
 
 var b_down = document.querySelector('#b_down');
 b_down.addEventListener("click", function(){ 
-    if (started === "ON") {
-        return;
-    }
     if (breakseconds / 60 <= 1) {
         return;
     }
