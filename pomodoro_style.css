@@ -1,4 +1,66 @@
 .headings {
     display: inline-block;
+    text-align: center;
+    background-color: lightgreen;
+    border: solid green;
+    color: darkgreen;
+    width: 191px;
+        
 }
 
+#bottom {
+    text-align: center;
+    background-color: tomato;
+    border: solid tomato;
+    width: 99%;
+    height: 100px;
+    
+}
+
+#container {
+    text-align: center;
+    width: 400px;
+    margin: auto;
+    border: solid tomato;
+}
+
+#message {
+    text-align: center;
+    color: teal;
+}
+
+#timer{
+    font-size: xx-large;
+    color: darkblue;
+    font-weight: bold;    
+}
+
+#b_screen , #s_screen {
+    font-size: large;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.bottom_commands {
+    background-color: brown;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 10%;
+}
+
+.topcommands {
+    background-color: mediumslateblue;
+    border: none;
+    color: white;
+    padding: 6px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 10%;
+}

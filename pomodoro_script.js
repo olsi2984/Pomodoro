@@ -54,6 +54,7 @@ start_btn.addEventListener("click", function(){
 
 var reset_btn = document.querySelector('#reset_btn');
 reset_btn.addEventListener("click", function(){ 
+    started = "OFF";
     clearInterval(countdown); 
     timerDisplay.textContent = "25:00" ;
     seconds = 1500;
